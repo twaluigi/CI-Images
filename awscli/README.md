@@ -1,4 +1,5 @@
 # awscli image
+
 Custom docker image with awscli installed
 
 This image is based on the python:3.7.4-slim-buster image

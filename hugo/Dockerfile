@@ -5,7 +5,7 @@ LABEL maintainer="Tom Wygonik <thomas.wygonik@gmail.com>"
 ENV HUGO_VERSION=0.56.3
 
 ADD https://github.com/gohugoio/hugo/releases/download/v${HUGO_VERSION}/hugo_${HUGO_VERSION}_Linux-64bit.tar.gz /tmp
-RUN tar -xf /tmp/${HUGO_ID}_Linux-64bit.tar.gz -C /tmp \
+RUN tar -xf /tmp/hugo_${HUGO_VERSION}_Linux-64bit.tar.gz -C /tmp \
     && mkdir -p /usr/local/sbin \
     && mv /tmp/hugo /usr/local/sbin/hugo \
     && rm -rf /tmp/${HUGO_ID}_linux_amd64 \
