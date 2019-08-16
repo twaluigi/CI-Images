@@ -12,5 +12,5 @@ awscli:
     AWSCLI_VERSION: "1.16.218"
   stage: build
   script:
-    - docker build -e PYTHON_VERSION=${PYTHON_VERSION} -e AWSCLI_VERSION=${AWSCLI_VERSION} -t registry.gitlab.com/twaluigi/ci-images/awscli:${AWSCLI_VERSION} awscli/
-    - docker build -e PYTHON_VERSION=${PYTHON_VERSION} -e AWSCLI_VERSION=${AWSCLI_VERSION} -t registry.gitlab.com/twaluigi/ci-images/awscli:latest awscli/
+    - docker build --build-arg PYTHON_VERSION=${PYTHON_VERSION} --build-arg AWSCLI_VERSION=${AWSCLI_VERSION} -t registry.gitlab.com/twaluigi/ci-images/awscli:${AWSCLI_VERSION} awscli/
+    - docker build --build-arg PYTHON_VERSION=${PYTHON_VERSION} --build-arg AWSCLI_VERSION=${AWSCLI_VERSION} -t registry.gitlab.com/twaluigi/ci-images/awscli:latest awscli/
