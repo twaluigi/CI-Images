@@ -1,2 +1,6 @@
-before_script:
-  - docker info
+
+isdockerinstalled:
+  before_script:
+    - docker info
+  script:
+    - echo "we're in script"
