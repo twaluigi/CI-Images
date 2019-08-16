@@ -1,8 +1,9 @@
-FROM alpine:3.10 
+ARG ALPINE_VERSION=${ALPINE_VERSION}
+FROM alpine:${ALPINE_VERSION}
 LABEL description="Docker container for building static sites with the Hugo static site generator."
 LABEL maintainer="Tom Wygonik <thomas.wygonik@gmail.com>"
 
-ENV HUGO_VERSION=0.56.3
+ARG HUGO_VERSION=${HUGO_VERSION}
 
 ADD https://github.com/gohugoio/hugo/releases/download/v${HUGO_VERSION}/hugo_${HUGO_VERSION}_Linux-64bit.tar.gz /tmp
 RUN tar -xf /tmp/hugo_${HUGO_VERSION}_Linux-64bit.tar.gz -C /tmp \
