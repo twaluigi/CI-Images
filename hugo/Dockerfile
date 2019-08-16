@@ -1,5 +1,6 @@
 ARG ALPINE_VERSION=${ALPINE_VERSION}
 FROM alpine:${ALPINE_VERSION}
+
 LABEL description="Docker container for building static sites with the Hugo static site generator."
 LABEL maintainer="Tom Wygonik <thomas.wygonik@gmail.com>"
 

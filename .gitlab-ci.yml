@@ -6,6 +6,9 @@ services:
 stages:
   - build
 
+variables:
+  ALPINE_VERSION: "3.10"
+
 awscli:
   variables:
     PYTHON_VERSION: "3.7.4"
@@ -21,7 +24,6 @@ awscli:
 
 hugo:
   variables:
-    ALPINE_VERSION: "3.10"
     HUGO_VERSION: "0.56.3"
   stage: build
   before_script:
