@@ -8,8 +8,8 @@ stages:
 
 awscli:
   variables:
-    PYTHON_VERSION: 3.7.4
-    AWSCLI_VERSION: 1.16.218 
+    PYTHON_VERSION: "3.7.4"
+    AWSCLI_VERSION: "1.16.218"
   stage: build
   script:
     - docker build -t registry.gitlab.com/twaluigi/ci-images/awscli:${AWSCLI_VERSION} awscli/
