@@ -12,5 +12,5 @@ awscli:
     AWSCLI_VERSION: 1.16.218 
   stage: build
   script:
-    - docker build -t registry.gitlab.com/twaluigi/ci-images/awscli:${AWSCLI_VERSION}
-    - docker build -t registry.gitlab.com/twaluigi/ci-images/awscli:latest
+    - docker build -t registry.gitlab.com/twaluigi/ci-images/awscli:${AWSCLI_VERSION} awscli/
+    - docker build -t registry.gitlab.com/twaluigi/ci-images/awscli:latest awscli/
