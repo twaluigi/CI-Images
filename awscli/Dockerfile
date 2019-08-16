@@ -1,4 +1,4 @@
-FROM python:${PYTHON_VERSION}-slim-buster
+FROM python:3.7.4-slim-buster
 
 ENV AWSCLI_VERSION 1.16.218 
 
