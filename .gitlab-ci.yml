@@ -1,6 +1,16 @@
+image: docker:latest
 
-isdockerinstalled:
-  before_script:
-    - docker info
+services:
+  - docker:dind
+
+stages:
+  - build
+
+awscli:
+  variables:
+    PYTHON_VERSION: 3.7.4
+    AWSCLI_VERSION: 1.16.218 
+  stage: build
   script:
-    - echo "we're in script"
+    - docker build -t registry.gitlab.com/twaluigi/ci-images/awscli:${AWSCLI_VERSION}
+    - docker build -t registry.gitlab.com/twaluigi/ci-images/awscli:latest
