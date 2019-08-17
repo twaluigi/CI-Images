@@ -5,11 +5,12 @@ services:
 
 stages:
   - build
+  - push
 
 variables:
   ALPINE_VERSION: "3.10"
 
-buildawscli:
+build-awscli:
   variables:
     PYTHON_VERSION: "3.7.4"
     AWSCLI_VERSION: "1.16.218"
@@ -22,7 +23,7 @@ buildawscli:
     - docker push $CI_REGISTRY/twaluigi/ci-images/awscli:${AWSCLI_VERSION}
     - docker push $CI_REGISTRY/twaluigi/ci-images/awscli:latest
 
-buildhugo:
+build-hugo:
   variables:
     HUGO_VERSION: "0.56.3"
   stage: build
@@ -34,7 +35,7 @@ buildhugo:
     - docker push $CI_REGISTRY/twaluigi/ci-images/hugo:${HUGO_VERSION}
     - docker push $CI_REGISTRY/twaluigi/ci-images/hugo:latest
 
-buildterragrunt:
+build-terragrunt:
   variables:
     TERRAFORM_VERSION: "0.12.6"
     TERRAGRUNT_VERSION: "0.19.19"
@@ -47,3 +48,17 @@ buildterragrunt:
     - docker tag $CI_REGISTRY/twaluigi/ci-images/terragrunt:${TERRAGRUNT_VERSION} $CI_REGISTRY/twaluigi/ci-images/terragrunt:latest
     - docker push $CI_REGISTRY/twaluigi/ci-images/terragrunt:${TERRAGRUNT_VERSION}
     - docker push $CI_REGISTRY/twaluigi/ci-images/terragrunt:latest
+
+push-awscli:
+  variables:
+    TARRAGRUNT_VERSION: "0.19.19"
+  stage: push
+  before_script:
+    - docker login -u $DOCKER_USERNAME -p $DOCKER_PASSWORD
+  script:
+    - docker pull $CI_REGISTRY/twaluigi/ci-images/awscli:${AWSCLI_VERSION}
+    - docker pull  $CI_REGISTRY/twaluigi/ci-images/awscli:latest
+    - docker tag $CI_REGISTRY/twaluigi/ci-images/awscli:${AWSCLIVERSION} $DOCKER_USERNAME/awscli:${AWSCLI_VERSION}
+    - docker tag $CI_REGISTRY/twaluigi/ci-images/awscli:latest $DOCKER_USERNAME/awscli:latest
+    - docker push $DOCKER_USERNAME/awscli:${AWSCLI_VERSION}
+    - ocker push $DOCKER_USERNAME/awscli:latest
