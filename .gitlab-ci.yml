@@ -9,7 +9,7 @@ stages:
 variables:
   ALPINE_VERSION: "3.10"
 
-awscli:
+buildawscli:
   variables:
     PYTHON_VERSION: "3.7.4"
     AWSCLI_VERSION: "1.16.218"
@@ -18,11 +18,11 @@ awscli:
     - docker login -u $CI_REGISTRY_USER -p $CI_REGISTRY_PASSWORD $CI_REGISTRY
   script:
     - docker build --build-arg PYTHON_VERSION=${PYTHON_VERSION} --build-arg AWSCLI_VERSION=${AWSCLI_VERSION} -t $CI_REGISTRY/twaluigi/ci-images/awscli:${AWSCLI_VERSION} awscli/
-    - docker build --build-arg PYTHON_VERSION=${PYTHON_VERSION} --build-arg AWSCLI_VERSION=${AWSCLI_VERSION} -t $CI_REGISTRY/twaluigi/ci-images/awscli:latest awscli/
+    - docker tag $CI_REGISTRY/twaluigi/ci-images/awscli:${AWSCLI_VERSION} $CI_REGISTRY/twaluigi/ci-images/awscli:latest
     - docker push $CI_REGISTRY/twaluigi/ci-images/awscli:${AWSCLI_VERSION}
     - docker push $CI_REGISTRY/twaluigi/ci-images/awscli:latest
 
-hugo:
+buildhugo:
   variables:
     HUGO_VERSION: "0.56.3"
   stage: build
@@ -30,11 +30,11 @@ hugo:
     - docker login -u $CI_REGISTRY_USER -p $CI_REGISTRY_PASSWORD $CI_REGISTRY
   script:
     - docker build --build-arg ALPINE_VERSION=${ALPINE_VERSION} --build-arg HUGO_VERSION=${HUGO_VERSION} -t $CI_REGISTRY/twaluigi/ci-images/hugo:${HUGO_VERSION} hugo/
-    - docker build --build-arg ALPINE_VERSION=${ALPINE_VERSION} --build-arg HUGO_VERSION=${HUGO_VERSION} -t $CI_REGISTRY/twaluigi/ci-images/hugo:latest hugo/
+    - docker tag $CI_REGISTRY/twaluigi/ci-images/hugo:${HUGO_VERSION} $CI_REGISTRY/twaluigi/ci-images/hugo:latest
     - docker push $CI_REGISTRY/twaluigi/ci-images/hugo:${HUGO_VERSION}
     - docker push $CI_REGISTRY/twaluigi/ci-images/hugo:latest
 
-terragrunt:
+buildterragrunt:
   variables:
     TERRAFORM_VERSION: "0.12.6"
     TERRAGRUNT_VERSION: "0.19.19"
@@ -44,6 +44,6 @@ terragrunt:
     - docker login -u $CI_REGISTRY_USER -p $CI_REGISTRY_PASSWORD $CI_REGISTRY
   script:
     - docker build --build-arg ALPINE_VERSION=${ALPINE_VERSION} --build-arg TERRAFORM_VERSION=${TERRAFORM_VERSION} --build-arg TERRAGRUNT_VERSION=${TERRAGRUNT_VERSION} --build-arg TERRAGRUNT_TFPATH=${TERRAGRUNT_TFPATH} -t $CI_REGISTRY/twaluigi/ci-images/terragrunt:${TERRAGRUNT_VERSION} terragrunt/
-    - docker build --build-arg ALPINE_VERSION=${ALPINE_VERSION} --build-arg TERRAFORM_VERSION=${TERRAFORM_VERSION} --build-arg TERRAGRUNT_VERSION=${TERRAGRUNT_VERSION} --build-arg TERRAGRUNT_TFPATH=${TERRAGRUNT_TFPATH} -t $CI_REGISTRY/twaluigi/ci-images/terragrunt:latest terragrunt/
+    - docker tag $CI_REGISTRY/twaluigi/ci-images/terragrunt:${TERRAGRUNT_VERSION} $CI_REGISTRY/twaluigi/ci-images/terragrunt:latest terragrunt/
     - docker push $CI_REGISTRY/twaluigi/ci-images/terragrunt:${TERRAGRUNT_VERSION}
     - docker push $CI_REGISTRY/twaluigi/ci-images/terragrunt:latest
