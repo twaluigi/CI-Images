@@ -62,3 +62,27 @@ push-awscli:
     - docker tag $CI_REGISTRY/twaluigi/ci-images/awscli:latest $DOCKER_USERNAME/awscli:latest
     - docker push $DOCKER_USERNAME/awscli:${AWSCLI_VERSION}
     - docker push $DOCKER_USERNAME/awscli:latest
+
+push-hugo:
+  stage: push
+  before_script:
+    - echo ${DOCKER_PASSWORD} | docker login -u $DOCKER_USERNAME --password-stdin
+  script:
+    - docker pull $CI_REGISTRY/twaluigi/ci-images/hugo:${HUGO_VERSION}
+    - docker pull  $CI_REGISTRY/twaluigi/ci-images/hugo:latest
+    - docker tag $CI_REGISTRY/twaluigi/ci-images/hugo:${HUGO_VERSION} $DOCKER_USERNAME/hugo:${HUGO_VERSION}
+    - docker tag $CI_REGISTRY/twaluigi/ci-images/hugo:latest $DOCKER_USERNAME/hugo:latest
+    - docker push $DOCKER_USERNAME/hugo:${HUGO_VERSION}
+    - docker push $DOCKER_USERNAME/hugo:latest
+
+push-terragrunt:
+  stage: push
+  before_script:
+    - echo ${DOCKER_PASSWORD} | docker login -u $DOCKER_USERNAME --password-stdin
+  script:
+    - docker pull $CI_REGISTRY/twaluigi/ci-images/terragrunt:${TERRAGRUNT_VERSION}
+    - docker pull  $CI_REGISTRY/twaluigi/ci-images/terragrunt:latest
+    - docker tag $CI_REGISTRY/twaluigi/ci-images/terragrunt:${TERRAGRUNT_VERSION} $DOCKER_USERNAME/terragrunt:${TERRAGRUNT_VERSION}
+    - docker tag $CI_REGISTRY/twaluigi/ci-images/terragrunt:latest $DOCKER_USERNAME/terragrunt:latest
+    - docker push $DOCKER_USERNAME/terragrunt:${TERRAGRUNT_VERSION}
+    - docker push $DOCKER_USERNAME/terragrunt:latest
