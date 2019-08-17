@@ -61,4 +61,4 @@ push-awscli:
     - docker tag $CI_REGISTRY/twaluigi/ci-images/awscli:${AWSCLI_VERSION} $DOCKER_USERNAME/awscli:${AWSCLI_VERSION}
     - docker tag $CI_REGISTRY/twaluigi/ci-images/awscli:latest $DOCKER_USERNAME/awscli:latest
     - docker push $DOCKER_USERNAME/awscli:${AWSCLI_VERSION}
-    - ocker push $DOCKER_USERNAME/awscli:latest
+    - docker push $DOCKER_USERNAME/awscli:latest
