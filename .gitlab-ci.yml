@@ -44,6 +44,6 @@ buildterragrunt:
     - docker login -u $CI_REGISTRY_USER -p $CI_REGISTRY_PASSWORD $CI_REGISTRY
   script:
     - docker build --build-arg ALPINE_VERSION=${ALPINE_VERSION} --build-arg TERRAFORM_VERSION=${TERRAFORM_VERSION} --build-arg TERRAGRUNT_VERSION=${TERRAGRUNT_VERSION} --build-arg TERRAGRUNT_TFPATH=${TERRAGRUNT_TFPATH} -t $CI_REGISTRY/twaluigi/ci-images/terragrunt:${TERRAGRUNT_VERSION} terragrunt/
-    - docker tag $CI_REGISTRY/twaluigi/ci-images/terragrunt:${TERRAGRUNT_VERSION} $CI_REGISTRY/twaluigi/ci-images/terragrunt:latest terragrunt/
+    - docker tag $CI_REGISTRY/twaluigi/ci-images/terragrunt:${TERRAGRUNT_VERSION} $CI_REGISTRY/twaluigi/ci-images/terragrunt:latest
     - docker push $CI_REGISTRY/twaluigi/ci-images/terragrunt:${TERRAGRUNT_VERSION}
     - docker push $CI_REGISTRY/twaluigi/ci-images/terragrunt:latest
