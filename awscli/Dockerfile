@@ -3,5 +3,8 @@ FROM python:${PYTHON_VERSION}-slim-buster
 
 ARG AWSCLI_VERSION=${AWSCLI_VERSION}
 
-RUN apt-get update && apt-get install jq --no-install-recommends -y && apt-get clean && rm -rf /var/lib/apt/lists/*
+RUN apt-get update \
+    && apt-get install jq --no-install-recommends -y \
+    && apt-get clean \
+    && rm -rf /var/lib/apt/lists/*
 RUN pip install awscli==$AWSCLI_VERSION --no-cache-dir
