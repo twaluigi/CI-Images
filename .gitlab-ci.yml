@@ -8,9 +8,6 @@ stages:
   - push
 
 build-awscli:
-  variables:
-    AWSCLI_VERSION: $AWSCLI_VERSION
-    PYTHON_VERSION: $PYTHON_VERSION
   stage: build
   before_script:
     - docker login -u $CI_REGISTRY_USER -p $CI_REGISTRY_PASSWORD $CI_REGISTRY
@@ -21,9 +18,6 @@ build-awscli:
     - docker push $CI_REGISTRY/twaluigi/ci-images/awscli:latest
 
 build-hugo:
-  variables:
-    ALPINE_VERSION: $ALPINE_VERSION
-    HUGO_VERSION: $HUGO_VERSION
   stage: build
   before_script:
     - docker login -u $CI_REGISTRY_USER -p $CI_REGISTRY_PASSWORD $CI_REGISTRY
@@ -35,8 +29,6 @@ build-hugo:
 
 build-terragrunt:
   variables:
-    TERRAFORM_VERSION: $TERRAFORM_VERSION
-    TERRAGRUNT_VERSION: $TERRAGRUNT_VERSION
     TERRAGRUNT_TFPATH: "/bin/terraform"
   stage: build
   before_script:
