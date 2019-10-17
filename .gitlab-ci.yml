@@ -7,15 +7,10 @@ stages:
   - build
   - push
 
-variables:
-  ALPINE_VERSION: "3.10"
-  AWSCLI_VERSION: "1.16.218"
-  HUGO_VERSION: "0.56.3"
-  TERRAGRUNT_VERSION: "0.19.19"
-
 build-awscli:
   variables:
-    PYTHON_VERSION: "3.7.4"
+    AWSCLI_VERSION: $AWSCLI_VERSION
+    PYTHON_VERSION: $PYTHON_VERSION
   stage: build
   before_script:
     - docker login -u $CI_REGISTRY_USER -p $CI_REGISTRY_PASSWORD $CI_REGISTRY
@@ -27,7 +22,8 @@ build-awscli:
 
 build-hugo:
   variables:
-    HUGO_VERSION: "0.56.3"
+    ALPINE_VERSION: $ALPINE_VERSION
+    HUGO_VERSION: $HUGO_VERSION
   stage: build
   before_script:
     - docker login -u $CI_REGISTRY_USER -p $CI_REGISTRY_PASSWORD $CI_REGISTRY
@@ -39,8 +35,8 @@ build-hugo:
 
 build-terragrunt:
   variables:
-    TERRAFORM_VERSION: "0.12.6"
-    TERRAGRUNT_VERSION: "0.19.19"
+    TERRAFORM_VERSION: $TERRAFORM_VERSION
+    TERRAGRUNT_VERSION: $TERRAGRUNT_VERSION
     TERRAGRUNT_TFPATH: "/bin/terraform"
   stage: build
   before_script:
