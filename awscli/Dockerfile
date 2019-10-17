@@ -1,10 +1,7 @@
 ARG  PYTHON_VERSION=${PYTHON_VERSION}
-FROM python:${PYTHON_VERSION}-slim-buster
+FROM python:${PYTHON_VERSION}-alpine
 
 ARG AWSCLI_VERSION=${AWSCLI_VERSION}
 
-RUN apt-get update \
-    && apt-get install jq --no-install-recommends -y \
-    && apt-get clean \
-    && rm -rf /var/lib/apt/lists/*
-RUN pip install awscli==$AWSCLI_VERSION --no-cache-dir
+RUN apk add --no-cache --update jq\
+    && pip install awscli==$AWSCLI_VERSION --no-cache-dir
