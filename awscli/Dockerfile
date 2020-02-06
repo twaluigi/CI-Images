@@ -3,5 +3,5 @@ FROM python:${PYTHON_VERSION}
 
 ARG AWSCLI_VERSION=${AWSCLI_VERSION}
 
-RUN apk add --no-cache --update jq\
+RUN apt-get install -y --no-install-recommends jq\
     && pip install awscli==$AWSCLI_VERSION --no-cache-dir
